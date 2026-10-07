@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "id": "blockaimbot",
   "version": "${version}",
-  "name": "blockaimbot",
+  "name": "pvpmod",
   "description": "Configurable nearest visible block aim assistance for Minecraft 1.21.11.",
   "authors": [
     "MaJeong3124"

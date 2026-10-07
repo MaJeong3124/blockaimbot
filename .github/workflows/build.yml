@@ -21,8 +21,8 @@ jobs:
         run: gradle --no-daemon clean build
       - uses: actions/upload-artifact@v4
         with:
-          name: blockaimbot-1.21.11
+          name: pvpmod-1.21.11
           path: |
-            build/libs/blockaimbot-1.1.0+mc1.21.11.jar
-            build/libs/blockaimbot-1.1.0+mc1.21.11-sources.jar
+            build/libs/pvpmod-1.1.1+mc1.21.11.jar
+            build/libs/pvpmod-1.1.1+mc1.21.11-sources.jar
           if-no-files-found: error
