@@ -1,0 +1,14 @@
+{
+  "key.category.blockaimbot.controls": "블록 조준",
+  "key.blockaimbot.trigger": "가까운 블록 조준 (누르는 동안)",
+  "blockaimbot.settings": "블록 조준 설정",
+  "blockaimbot.speed": "조준 속도: %s 도/초",
+  "blockaimbot.distance": "최대 거리: %s 블록",
+  "blockaimbot.randomization": "속도 랜덤화: ±%s%%",
+  "blockaimbot.controls": "트리거 키 변경",
+  "blockaimbot.random_note": "랜덤화는 감지 우회를 보장하지 않습니다.",
+  "blockaimbot.selected": "대상 블록 종류: %s",
+  "blockaimbot.cleared": "대상 블록을 해제했습니다.",
+  "blockaimbot.save_failed": "설정을 저장하지 못했습니다. 로그를 확인하세요.",
+  "blockaimbot.look_at_block": "블록을 바라보고 /block을 입력하세요."
+}

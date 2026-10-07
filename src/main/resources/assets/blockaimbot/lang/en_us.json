@@ -1,0 +1,14 @@
+{
+  "key.category.blockaimbot.controls": "block aim",
+  "key.blockaimbot.trigger": "aim at nearest block (hold)",
+  "blockaimbot.settings": "block aim settings",
+  "blockaimbot.speed": "aim speed: %s degrees/s",
+  "blockaimbot.distance": "maximum distance: %s blocks",
+  "blockaimbot.randomization": "speed variation: ±%s%%",
+  "blockaimbot.controls": "change trigger key",
+  "blockaimbot.random_note": "randomization does not guarantee detection bypass.",
+  "blockaimbot.selected": "target block type: %s",
+  "blockaimbot.cleared": "target block cleared.",
+  "blockaimbot.save_failed": "could not save settings. check the log.",
+  "blockaimbot.look_at_block": "look at a block and enter /block."
+}

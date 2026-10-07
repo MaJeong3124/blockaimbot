@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "id": "blockaimbot",
+  "version": "${version}",
+  "name": "blockaimbot",
+  "description": "Configurable nearest visible block aim assistance for Minecraft 26.2.",
+  "authors": ["MaJeong3124"],
+  "environment": "client",
+  "entrypoints": {
+    "client": ["kr.majeong.blockaimbot.BlockAimClient"],
+    "modmenu": ["kr.majeong.blockaimbot.ModMenuIntegration"]
+  },
+  "depends": {
+    "fabricloader": ">=0.19.3",
+    "minecraft": "26.2",
+    "java": ">=25",
+    "fabric-api": ">=0.152.0"
+  },
+  "suggests": {"modmenu": ">=20.0.0"}
+}
