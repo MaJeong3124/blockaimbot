@@ -13,7 +13,7 @@ jobs:
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
-          java-version: '25'
+          java-version: '21'
       - uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '9.5.1'
@@ -21,6 +21,8 @@ jobs:
         run: gradle --no-daemon clean build
       - uses: actions/upload-artifact@v4
         with:
-          name: blockaimbot-26.2
-          path: build/libs/*.jar
+          name: blockaimbot-1.21.11
+          path: |
+            build/libs/blockaimbot-1.1.0+mc1.21.11.jar
+            build/libs/blockaimbot-1.1.0+mc1.21.11-sources.jar
           if-no-files-found: error

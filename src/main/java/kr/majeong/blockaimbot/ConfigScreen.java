@@ -1,6 +1,6 @@
 package kr.majeong.blockaimbot;
 
-import net.minecraft.client.gui.GuiGraphicsExtractor;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractSliderButton;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.Screen;
@@ -20,21 +20,21 @@ public final class ConfigScreen extends Screen {
         addRenderableWidget(new SettingSlider(x, y + 26, "blockaimbot.distance", c.maxDistance, 1, 16, n -> c.maxDistance = n));
         addRenderableWidget(new SettingSlider(x, y + 52, "blockaimbot.randomization", c.randomization, 0, 50, n -> c.randomization = n));
         addRenderableWidget(Button.builder(Component.translatable("blockaimbot.controls"), b ->
-                minecraft.gui.setScreen(new net.minecraft.client.gui.screens.options.controls.KeyBindsScreen(this, minecraft.options)))
+                minecraft.setScreen(new net.minecraft.client.gui.screens.options.controls.KeyBindsScreen(this, minecraft.options)))
                 .bounds(x, y + 82, 260, 20).build());
         addRenderableWidget(Button.builder(Component.translatable("gui.done"), b -> onClose())
                 .bounds(x, y + 108, 260, 20).build());
     }
 
-    @Override public void extractRenderState(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float delta) {
-        super.extractRenderState(graphics, mouseX, mouseY, delta);
-        graphics.text(font, title, width / 2 - font.width(title) / 2, 16, 0xFFFFFFFF, true);
+    @Override public void render(GuiGraphics graphics, int mouseX, int mouseY, float delta) {
+        super.render(graphics, mouseX, mouseY, delta);
+        graphics.drawString(font, title, width / 2 - font.width(title) / 2, 16, 0xFFFFFFFF, true);
         Component note = Component.translatable(saveFailed ? "blockaimbot.save_failed" : "blockaimbot.random_note");
-        graphics.text(font, note, width / 2 - font.width(note) / 2, Math.max(35, height / 2 - 75) + 136,
+        graphics.drawString(font, note, width / 2 - font.width(note) / 2, Math.max(35, height / 2 - 75) + 136,
                 saveFailed ? 0xFFFF5555 : 0xFFAAAAAA, true);
     }
 
-    @Override public void onClose() { minecraft.gui.setScreen(parent); }
+    @Override public void onClose() { minecraft.setScreen(parent); }
     @Override public void removed() { saveFailed = !BlockAimClient.config.save(); }
 
     private final class SettingSlider extends AbstractSliderButton {

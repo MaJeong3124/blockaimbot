@@ -5,7 +5,7 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback;
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
-import net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper;
+import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
@@ -20,7 +20,7 @@ import net.minecraft.world.phys.Vec3;
 import org.lwjgl.glfw.GLFW;
 import java.util.ArrayList;
 import java.util.Comparator;
-import static net.fabricmc.fabric.api.client.command.v2.ClientCommands.literal;
+import static net.fabricmc.fabric.api.client.command.v2.ClientCommandManager.literal;
 
 public final class BlockAimClient implements ClientModInitializer {
     public static AimConfig config;
@@ -33,10 +33,10 @@ public final class BlockAimClient implements ClientModInitializer {
     @Override public void onInitializeClient() {
         config = AimConfig.load();
         var category = KeyMapping.Category.register(Identifier.fromNamespaceAndPath("blockaimbot", "controls"));
-        trigger = KeyMappingHelper.registerKeyMapping(new KeyMapping("key.blockaimbot.trigger",
+        trigger = KeyBindingHelper.registerKeyBinding(new KeyMapping("key.blockaimbot.trigger",
                 InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_R, category));
         ClientCommandRegistrationCallback.EVENT.register((dispatcher, registryAccess) ->
-            dispatcher.register(literal("block").requires(FabricClientCommandSource::attended)
+            dispatcher.register(literal("block")
                 .executes(ctx -> select(ctx.getSource()))
                 .then(literal("clear").executes(ctx -> {
                     config.targetBlock = "";
@@ -47,7 +47,7 @@ public final class BlockAimClient implements ClientModInitializer {
                 }))
                 .then(literal("settings").executes(ctx -> {
                     Minecraft mc = Minecraft.getInstance();
-                    mc.execute(() -> mc.gui.setScreen(new ConfigScreen(null)));
+                    mc.execute(() -> mc.setScreen(new ConfigScreen(null)));
                     return 1;
                 }))));
         ClientTickEvents.END_CLIENT_TICK.register(this::tick);
@@ -69,7 +69,7 @@ public final class BlockAimClient implements ClientModInitializer {
 
     private void tick(Minecraft mc) {
         if (lastLevel != mc.level) { lastLevel = mc.level; reset(); }
-        if (mc.player == null || mc.level == null || mc.gui.screen() != null || !mc.isWindowActive()
+        if (mc.player == null || mc.level == null || mc.screen != null || !mc.isWindowActive()
                 || !mc.player.isAlive() || !trigger.isDown() || config.targetBlock.isEmpty()) {
             reset();
             return;

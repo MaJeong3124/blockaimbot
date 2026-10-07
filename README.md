@@ -1,11 +1,13 @@
 # blockaimbot
 
-Minecraft Java **26.2**, Fabric, Java 25용 클라이언트 모드입니다.
+Minecraft Java **1.21.11**, Fabric, Java 21용 클라이언트 모드입니다.
+
+26.2용은 [`main`](https://github.com/MaJeong3124/blockaimbot/tree/main), 1.21.11용은 [`1.21.11`](https://github.com/MaJeong3124/blockaimbot/tree/1.21.11) 브랜치입니다. 버전별 jar를 맞춰 설치하세요.
 
 ## 사용
 
-1. Fabric Loader 0.19.3 이상, 26.2용 Fabric API와 이 모드를 `mods` 폴더에 넣습니다.
-2. 설정 화면을 모드 목록에서 열려면 26.2용 **Mod Menu 20.x**도 설치합니다. Mod Menu는 선택 의존성입니다.
+1. Fabric Loader 0.19.3 이상, 1.21.11용 Fabric API와 이 모드를 `mods` 폴더에 넣습니다.
+2. 설정 화면을 모드 목록에서 열려면 1.21.11용 **Mod Menu 17.x**도 설치합니다. Mod Menu는 선택 의존성입니다.
 3. 원하는 블록을 바라보고 `/block`을 입력합니다. 특정 좌표가 아니라 **블록 종류**를 등록합니다. 예: 다이아몬드 광석.
 4. 기본 **r 키를 누르고 있는 동안**, 최대 거리 안에 있는 같은 종류 중 가장 가까운 보이는 블록으로 조준합니다. 키를 놓으면 즉시 해제합니다.
 5. 모드 목록 → blockaimbot → 설정에서 조준 속도, 최대 거리, 움직임 랜덤화를 변경합니다. 키는 설정 화면의 키 변경 버튼 또는 게임 설정 → 조작 → 키 설정에서 변경합니다.
@@ -34,7 +36,7 @@ Minecraft Java **26.2**, Fabric, Java 25용 클라이언트 모드입니다.
 
 ## 개발 및 빌드
 
-Java 25로:
+Java 21로:
 
 ```sh
 ./gradlew clean build
@@ -46,8 +48,8 @@ Windows:
 .\gradlew.bat clean build
 ```
 
-출력: `build/libs/blockaimbot-1.1.0.jar`. `-sources.jar`는 설치용이 아닙니다.
+출력: `build/libs/blockaimbot-1.1.0+mc1.21.11.jar`. `-sources.jar`는 설치용이 아닙니다.
 
 검증 상태는 작업 완료 보고 및 GitHub Actions 실행 결과를 확인하세요. 소스 작성만으로 실제 게임 실행이나 서버 감지 여부를 검증한 것은 아닙니다.
 
-공식 참고: [26.2 개발 변경](https://fabricmc.net/2026/06/15/262.html), [키 등록](https://docs.fabricmc.net/develop/key-mappings), [설정 화면](https://docs.fabricmc.net/develop/rendering/gui/custom-screens), [Mod Menu 26.2](https://github.com/TerraformersMC/ModMenu/tree/26.2).
+공식 참고: [1.21.11 개발 변경](https://fabricmc.net/2025/12/05/12111.html), [1.21.11 설정 화면](https://docs.fabricmc.net/1.21.11/develop/rendering/gui/custom-screens).
