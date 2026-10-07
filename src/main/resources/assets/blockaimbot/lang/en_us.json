@@ -1,7 +1,7 @@
 {
-  "key.category.blockaimbot.controls": "block aim",
+  "key.category.blockaimbot.controls": "pvpmod (26.2)",
   "key.blockaimbot.trigger": "aim at nearest block (hold)",
-  "blockaimbot.settings": "block aim settings",
+  "blockaimbot.settings": "pvpmod settings (26.2)",
   "blockaimbot.speed": "aim speed: %s degrees/s",
   "blockaimbot.distance": "maximum distance: %s blocks",
   "blockaimbot.randomization": "motion variation: %s%%",

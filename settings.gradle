@@ -5,4 +5,4 @@ pluginManagement {
         mavenCentral()
     }
 }
-rootProject.name = 'blockaimbot'
+rootProject.name = 'pvpmod'

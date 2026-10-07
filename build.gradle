@@ -3,7 +3,7 @@ plugins {
 }
 version = project.mod_version
 group = 'kr.majeong'
-base { archivesName = 'blockaimbot' }
+base { archivesName = 'pvpmod' }
 repositories {
     maven { url = 'https://maven.terraformersmc.com/releases/' }
 }
