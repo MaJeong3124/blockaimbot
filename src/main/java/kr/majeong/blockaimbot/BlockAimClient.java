@@ -20,7 +20,6 @@ import net.minecraft.world.phys.Vec3;
 import org.lwjgl.glfw.GLFW;
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.concurrent.ThreadLocalRandom;
 import static net.fabricmc.fabric.api.client.command.v2.ClientCommands.literal;
 
 public final class BlockAimClient implements ClientModInitializer {
@@ -29,7 +28,7 @@ public final class BlockAimClient implements ClientModInitializer {
     private BlockPos locked;
     private net.minecraft.client.multiplayer.ClientLevel lastLevel;
     private int scanCooldown;
-    private double speedFactor = 1;
+    private final AimMotion motion = new AimMotion();
 
     @Override public void onInitializeClient() {
         config = AimConfig.load();
@@ -41,7 +40,7 @@ public final class BlockAimClient implements ClientModInitializer {
                 .executes(ctx -> select(ctx.getSource()))
                 .then(literal("clear").executes(ctx -> {
                     config.targetBlock = "";
-                    locked = null;
+                    reset();
                     boolean saved = config.save();
                     ctx.getSource().sendFeedback(Component.translatable(saved ? "blockaimbot.cleared" : "blockaimbot.save_failed"));
                     return saved ? 1 : 0;
@@ -62,8 +61,7 @@ public final class BlockAimClient implements ClientModInitializer {
         }
         Block block = mc.level.getBlockState(hit.getBlockPos()).getBlock();
         config.targetBlock = BuiltInRegistries.BLOCK.getKey(block).toString();
-        locked = null;
-        scanCooldown = 0;
+        reset();
         source.sendFeedback(Component.translatable("blockaimbot.selected", config.targetBlock));
         if (!config.save()) source.sendError(Component.translatable("blockaimbot.save_failed"));
         return 1;
@@ -85,9 +83,9 @@ public final class BlockAimClient implements ClientModInitializer {
         // Scan at most 5 times/sec; immediately rescan when the lock is invalid.
         if (aim == null || --scanCooldown <= 0) {
             BlockPos next = nearest(mc, eye, block);
-            if (next == null) { locked = null; scanCooldown = 4; return; }
+            if (next == null) { locked = null; motion.reset(); scanCooldown = 4; return; }
             if (!next.equals(locked)) {
-                speedFactor = 1 + ThreadLocalRandom.current().nextDouble(-1, 1) * config.randomization / 100;
+                motion.reset();
             }
             locked = next;
             scanCooldown = 4;
@@ -97,13 +95,13 @@ public final class BlockAimClient implements ClientModInitializer {
         Vec3 delta = aim.subtract(eye);
         double yaw = Math.toDegrees(Math.atan2(delta.z, delta.x)) - 90;
         double pitch = -Math.toDegrees(Math.atan2(delta.y, Math.hypot(delta.x, delta.z)));
-        float[] angles = AimMath.step(mc.player.getYRot(), mc.player.getXRot(), yaw, pitch,
-                config.aimSpeed * speedFactor / 20);
+        float[] angles = motion.step(mc.player.getYRot(), mc.player.getXRot(), yaw, pitch,
+                config.aimSpeed, config.randomization);
         mc.player.setYRot(angles[0]);
         mc.player.setXRot(angles[1]);
     }
 
-    private void reset() { locked = null; scanCooldown = 0; speedFactor = 1; }
+    private void reset() { locked = null; scanCooldown = 0; motion.reset(); }
 
     private BlockPos nearest(Minecraft mc, Vec3 eye, Block target) {
         int r = (int) Math.ceil(config.maxDistance);

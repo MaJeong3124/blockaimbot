@@ -4,7 +4,7 @@
   "blockaimbot.settings": "블록 조준 설정",
   "blockaimbot.speed": "조준 속도: %s 도/초",
   "blockaimbot.distance": "최대 거리: %s 블록",
-  "blockaimbot.randomization": "속도 랜덤화: ±%s%%",
+  "blockaimbot.randomization": "움직임 랜덤화: %s%%",
   "blockaimbot.controls": "트리거 키 변경",
   "blockaimbot.random_note": "랜덤화는 감지 우회를 보장하지 않습니다.",
   "blockaimbot.selected": "대상 블록 종류: %s",

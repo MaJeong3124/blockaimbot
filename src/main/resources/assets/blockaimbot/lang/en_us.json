@@ -4,7 +4,7 @@
   "blockaimbot.settings": "block aim settings",
   "blockaimbot.speed": "aim speed: %s degrees/s",
   "blockaimbot.distance": "maximum distance: %s blocks",
-  "blockaimbot.randomization": "speed variation: ±%s%%",
+  "blockaimbot.randomization": "motion variation: %s%%",
   "blockaimbot.controls": "change trigger key",
   "blockaimbot.random_note": "randomization does not guarantee detection bypass.",
   "blockaimbot.selected": "target block type: %s",

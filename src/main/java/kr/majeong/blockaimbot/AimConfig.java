@@ -14,13 +14,13 @@ public final class AimConfig {
     private static final Path FILE = FabricLoader.getInstance().getConfigDir().resolve("blockaimbot.json");
     public double aimSpeed = 180;
     public double maxDistance = 6;
-    public double randomization = 0;
+    public double randomization = 15;
     public String targetBlock = "";
 
     public void sanitize() {
         aimSpeed = clamp(aimSpeed, 5, 720, 180);
         maxDistance = clamp(maxDistance, 1, 16, 6);
-        randomization = clamp(randomization, 0, 50, 0);
+        randomization = clamp(randomization, 0, 50, 15);
         if (targetBlock == null) targetBlock = "";
     }
 
